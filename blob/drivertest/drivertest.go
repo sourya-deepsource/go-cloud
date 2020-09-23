@@ -2145,13 +2145,10 @@ func testSignedURL(t *testing.T, newHarness HarnessMaker) {
 		{http.MethodDelete, "", deleteURL, false},
 	}
 	if putURLWithContentType != "" {
-		tests = append(tests, signedURLTest{http.MethodPut, allowedContentType, putURLWithContentType, true})
-		tests = append(tests, signedURLTest{http.MethodPut, differentContentType, putURLWithContentType, false})
-		tests = append(tests, signedURLTest{http.MethodPut, "", putURLWithContentType, false})
+		tests = append(tests, signedURLTest{http.MethodPut, allowedContentType, putURLWithContentType, true}, signedURLTest{http.MethodPut, differentContentType, putURLWithContentType, false}, signedURLTest{http.MethodPut, "", putURLWithContentType, false})
 	}
 	if putURLEnforcedAbsentContentType != "" {
-		tests = append(tests, signedURLTest{http.MethodPut, "", putURLWithoutContentType, true})
-		tests = append(tests, signedURLTest{http.MethodPut, differentContentType, putURLWithoutContentType, false})
+		tests = append(tests, signedURLTest{http.MethodPut, "", putURLWithoutContentType, true}, signedURLTest{http.MethodPut, differentContentType, putURLWithoutContentType, false})
 	}
 	if putURLWithoutContentType != "" {
 		tests = append(tests, signedURLTest{http.MethodPut, "", putURLWithoutContentType, true})
